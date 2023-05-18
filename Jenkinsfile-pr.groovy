@@ -16,7 +16,7 @@ pipeline {
              echo 'Segundo stage'
           }else{
              echo 'Skipped'
-            currentBuild.result = "NOT_BUILT"
+            currentBuild.result = "SKIPPED"
           }
 
         }

@@ -1,4 +1,5 @@
 def executeStage = false
+def flag = true
 pipeline {
     agent any
 
@@ -12,7 +13,7 @@ pipeline {
                         id: 'executeStage',
                         message: 'Do you want to deploy version to DEV?',
                         parameters: [
-                                choice(defaultValue: false, choices: [true, false],description: '"yes" to deploy/"no" to skip?', name: 'choose one option')
+                                choice( choices: [true, false],description: '"yes" to deploy/"no" to skip?', name: 'choose one option')
                         ])
                     }
                 }
@@ -21,6 +22,9 @@ pipeline {
 		stage('Stage 1') {
             when {
                 expression { executeStage = true }
+            }
+            when {
+                expression { flag = true }
             }
             steps {
                 echo 'Primer stage'
@@ -35,7 +39,7 @@ pipeline {
                         id: 'executeStage',
                         message: 'Do you want to deploy version to DEV?',
                         parameters: [
-                                choice(defaultValue: "false", choices: ["true", "false"],description: '"yes" to deploy/"no" to skip?', name: 'choose one option')
+                                choice( choices: [true, false],description: '"yes" to deploy/"no" to skip?', name: 'choose one option')
                         ])
                     }
                 }

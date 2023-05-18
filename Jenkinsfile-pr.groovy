@@ -10,9 +10,7 @@ pipeline {
 				  def executeStage = input(
 						  id: 'executeStage',
 						  message: 'Do you want to deploy version to DEV?',
-						  parameters: [
-								  [$class: 'BooleanParameterDefinition', description: 'deploy to dev', name: 'deployToDev']
-						  ]
+					
 				  )
 				  if(executeStage){
 					echo "stage 1"

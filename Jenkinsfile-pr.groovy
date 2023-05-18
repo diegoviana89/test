@@ -1,11 +1,12 @@
 pipeline {
     agent any
+    def executeStage = "no"
 
     stages {
 		stage('Stage 1') {
             steps {
                 script {
-                def executeStage = input(
+                    executeStage = input(
                         id: 'executeStage',
                         message: 'Do you want to deploy version to DEV?',
                         parameters: [

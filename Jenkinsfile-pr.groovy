@@ -9,14 +9,14 @@ pipeline {
                   id: 'executeStage',
                   message: 'Do you want to deploy version to DEV?',
                   parameters: [
-                         booleanParam(defaultValue: false, description: 'really?', name: 'myValue')
+                         booleanParam(defaultValue: false, description: 'yes to confirm/empty to skip this stage?', name: 'Yes')
                   ]
           )
           if(executeStage){
              echo 'Segundo stage'
           }else{
              echo 'Skipped'
-            currentBuild.result = "SKIPPED"
+            currentBuild.result = "NOT_BUILT"
           }
 
         }

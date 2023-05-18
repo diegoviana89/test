@@ -20,7 +20,7 @@ pipeline {
 
 		stage('Stage 1') {
             when {
-                expression { executeStage == true }
+                expression { executeStage = true }
             }
             steps {
                 echo 'Primer stage'

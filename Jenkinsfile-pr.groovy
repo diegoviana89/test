@@ -27,9 +27,6 @@ pipeline {
          
         
         stage('Stage 2') {
-            when{
-                executeStage = 'no'
-            }
             steps {
                 echo 'Segundo stage'
             }

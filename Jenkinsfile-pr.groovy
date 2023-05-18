@@ -34,6 +34,21 @@ pipeline {
                 }
             }
         }
+		
+		stage('Deploy to DEV?') {
+            agent none
+            steps {
+                input(message: "Do you want to deploy version ${params.BUILD_VERSION} to INT?")
+            }
+            post {
+                success {
+                    echo 'Attempting to deploy to int'
+                }
+                aborted {
+                    echo "Aborting attempt to deploy to int"
+                }
+            }
+        }
         
         stage('Stage 2') {
             steps {

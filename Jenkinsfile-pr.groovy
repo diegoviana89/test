@@ -3,32 +3,20 @@ pipeline {
 
     stages {
 		
-		stage('Deploy to Dev') {
-  
-			  steps {
-				script {
-				  def executeStage = input(
-						  id: 'executeStage',
-						  message: 'Do you want to deploy version to DEV?',
-					
-				  )
-				  if(executeStage){
-					echo "stage 1"
-				  }else{
-					echo "deployment skipped"
-				  }
+		stage('do optional stuff?') {
+			userInput = input(
+				id: 'userInput', message: "Some important question?", parameters: [
+				booleanParam(defaultValue: false, description: 'really?', name: 'myValue')
+			])
+		}
 
-				}
-			  }
-    }
-        
-         
-    
-        
-        stage('Stage 2') {
-            steps {
-                echo 'Segundo stage'
-            }
-        }
+		stage('optional: do magic') {
+			if (userInput) {
+				echo "do magic"
+			} else {
+				// do what ever you want when skipping this build
+				currentBuild.result = "UNSTABLE"
+			}
+		}
     }
 }

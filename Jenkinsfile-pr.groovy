@@ -11,10 +11,13 @@ pipeline {
         }
          
         
-        stage('Stage 2') {
-            steps {
-                echo 'Segundo stage'
-            }
-        }
+        stage('optional: do magic') {
+			if (userInput) {
+				echo "do magic"
+			} else {
+				// do what ever you want when skipping this build
+				currentBuild.result = "UNSTABLE"
+			}
+		}
     }
 }

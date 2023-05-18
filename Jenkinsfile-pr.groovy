@@ -22,6 +22,17 @@ pipeline {
             steps {
                 echo 'Hola'
             }
+			post {
+                success {
+                    println 'success! Deployed to int.'
+                }
+                failure {
+                    println "failed to deploy to int."
+                }
+                aborted {
+                    println "job aborted. Did not deploy to int."
+                }
+            }
         }
         
         stage('Stage 2') {

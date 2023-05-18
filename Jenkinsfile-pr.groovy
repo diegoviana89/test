@@ -2,50 +2,26 @@ pipeline {
     agent any
 
     stages {
-		
-		stage('Deploy to INT?') {
-            agent none
-            steps {
-                input(message: "Do you want to deploy version ${params.BUILD_VERSION} to INT?")
-            }
-            post {
-                success {
-                    echo 'Attempting to deploy to int'
-                }
-                aborted {
-                    echo "Aborting attempt to deploy to int"
-                }
-            }
-        }
         
         stage('Stage 1') {
             steps {
-                echo 'Hola'
-            }
-			post {
-                success {
-                    println 'success! Deployed to int.'
-                }
-                failure {
-                    println "failed to deploy to int."
-                }
-                aborted {
-                    println "job aborted. Did not deploy to int."
-                }
-            }
-        }
-		
-		stage('Deploy to DEV?') {
-            agent none
-            steps {
-                input(message: "Do you want to deploy version ${params.BUILD_VERSION} to INT?")
-            }
-            post {
-                success {
-                    echo 'Attempting to deploy to int'
-                }
-                aborted {
-                    echo "Aborting attempt to deploy to int"
+                script {
+                    // Solicitar confirmación al usuario
+                    def userInput = input(
+                        id: 'userConfirmation',
+                        message: '¿Deseas ejecutar el Stage 1?',
+                        parameters: [
+                            [$class: 'ChoiceParameterDefinition', choices: 'Sí\nNo', description: 'Selecciona una opción']
+                        ]
+                    )
+                    
+                    // Verificar la respuesta del usuario
+                    if (userInput == 'Sí') {
+                        echo 'Ejecutando Stage 1...'
+                        // Agrega aquí las instrucciones para el Stage 1
+                    } else {
+                        echo 'Omitiendo Stage 1...'
+                    }
                 }
             }
         }

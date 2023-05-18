@@ -44,8 +44,10 @@ pipeline {
          
         
         stage('Stage 2') {
-            when {
-                expression { return executeStage = true && flag = true}
+             when {
+                expression {
+                    return executeStage = true && flag = true
+                }
             }
             steps {
                 echo 'Segundo stage'

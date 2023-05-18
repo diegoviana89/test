@@ -4,9 +4,10 @@ pipeline {
     stages {
 		
 		stage('Stage 1') {
-            steps {
-                echo 'Segundo stage'
-            }
+             userInput = input(
+				id: 'userInput', message: "Some important question?", parameters: [
+				booleanParam(defaultValue: false, description: 'really?', name: 'myValue')
+			])
         }
          
         

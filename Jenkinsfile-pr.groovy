@@ -15,6 +15,7 @@ pipeline {
           if(executeStage){
              echo 'Segundo stage'
           }else{
+             echo 'Skipped'
             currentBuild.result = "UNSTABLE"
           }
 

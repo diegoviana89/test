@@ -1,9 +1,11 @@
-    def executeStage = "no"
+def executeStage = false
 pipeline {
     agent any
 
     stages {
-		stage('Stage 1') {
+
+        stage('Deploy to INT?') {
+            agent none
             steps {
                 script {
                     executeStage = input(
@@ -11,25 +13,24 @@ pipeline {
                         message: 'Do you want to deploy version to DEV?',
                         parameters: [
                                 choice(defaultValue: false, choices: ['yes', 'no'],description: 'yes to confirm/empty to skip this stage?', name: 'Yes')
-                        ]
-                )
-                
-                if(executeStage=='yes'){
-                    echo 'Primer stage'
-                }else{
-                    
-                    echo 'Skipped'
-                    currentBuild.result = "SUCCESS"
+                        ])
+                    }
                 }
+            }
 
-                }
+		stage('Stage 1') {
+            when {
+                expression { executeStage == true }
+            }
+            steps {
+                echo 'Segundo stage'
             }
         }
          
         
         stage('Stage 2') {
             when {
-                expression { executeStage == 'yes' }
+                expression { executeStage == true }
             }
             steps {
                 echo 'Segundo stage'

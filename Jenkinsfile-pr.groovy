@@ -1,6 +1,6 @@
+    def executeStage = "no"
 pipeline {
     agent any
-    def executeStage = "no"
 
     stages {
 		stage('Stage 1') {

@@ -27,6 +27,9 @@ pipeline {
          
         
         stage('Stage 2') {
+            when {
+                expression { executeStage == 'yes' }
+            }
             steps {
                 echo 'Segundo stage'
             }

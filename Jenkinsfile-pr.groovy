@@ -9,7 +9,7 @@ pipeline {
                   id: 'executeStage',
                   message: 'Do you want to deploy version to DEV?',
                   parameters: [
-                         [$class: 'ChoiceParameterDefinition', choices: 'yes\nNo', description: 'Choose one option']
+                         choice(defaultValue: false, choices: ['yes', 'no'],description: 'yes to confirm/empty to skip this stage?', name: 'Yes')
                   ]
           )
           if(executeStage){

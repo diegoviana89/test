@@ -2,21 +2,23 @@ pipeline {
     agent any
 
     stages {
-		stage('Stage 1') {
-            steps {
-			userInput = input(
-				id: 'userInput', message: "Some important question?", parameters: [
-				booleanParam(defaultValue: false, description: 'really?', name: 'myValue')
-			])
-				if (userInput) {
-			echo "do magic"
-		} else {
-			// do what ever you want when skipping this build
+		stage('Deploy to Dev') {
+      steps {
+        script {
+          def executeStage = input(
+                  id: 'userInput', message: "Some important question?", parameters: [
+					booleanParam(defaultValue: false, description: 'really?', name: 'myValue')
+          )
+          if(executeStage){
+            echo 'Segundo stage'
+          }else{
+            echo "deployment skipped"
 			currentBuild.result = "UNSTABLE"
-		}
-                echo 'Segundo stage'
-            }
+          }
+
         }
+      }
+    }
          
         
         stage('Stage 2') {

@@ -8,10 +8,10 @@ pipeline {
                 script {
                     // Solicitar confirmación al usuario
                     def userInput = input(
-                        id: "userConfirmation",
-                        message: "Deseas ejecutar el Stage 1",
+                        id: 'userConfirmation',
+                        message: 'Deseas ejecutar el Stage 1',
                         parameters: [
-                            [$class: "ChoiceParameterDefinition', choices: 'Si\No', description: 'Selecciona una opcion"]
+                            [$class: 'GeneratorChoiceParameterDefinition', choices: 'Si\No', description: 'Selecciona una opcion']
                         ]
                     )
                     

@@ -1,34 +1,34 @@
 pipeline {
     agent any
-    
+
     stages {
-        stage('Stage 1') {
-            steps {
-                script {
-                    // Solicitar confirmación al usuario
-                    def userInput = input(
-                        id: 'userConfirmation',
-                        message: '¿Deseas ejecutar el Stage 1?',
-                        parameters: [
-                            [$class: 'ChoiceParameterDefinition', choices: 'Sí\nNo', description: 'Selecciona una opción']
-                        ]
-                    )
-                    
-                    // Verificar la respuesta del usuario
-                    if (userInput == 'Sí') {
-                        echo 'Ejecutando Stage 1...'
-                        // Agrega aquí las instrucciones para el Stage 1
-                    } else {
-                        echo 'Omitiendo Stage 1...'
-                    }
-                }
+        
+              when {
+        expression { true }
+      }
+      steps {
+        script {
+          def executeStage = input(
+                  id: 'executeStage',
+                  message: 'Do you want to deploy version to DEV?',
+                  parameters: [
+                          [$class: 'BooleanParameterDefinition', description: 'deploy to dev', name: 'deployToDev']
+                  ]
+          )
+          if(executeStage){
+				echo "deployment skipped"
             }
+          }else{
+            echo "deployment skipped"
+          }
+
         }
+      }
+    }
         
         stage('Stage 2') {
             steps {
-                echo 'Ejecutando Stage 2...'
-                // Agrega aquí las instrucciones para el Stage 2
+                echo 'Segundo stage'
             }
         }
     }

@@ -11,12 +11,12 @@ pipeline {
                         id: 'userConfirmation',
                         message: '¿Deseas ejecutar el Stage 1?',
                         parameters: [
-                            [$class: 'ChoiceParameterDefinition', choices: 'Sí\nNo', description: 'Selecciona una opción']
+                            [$class: 'ChoiceParameterDefinition', choices: 'Si\nNo', description: 'Selecciona una opcion']
                         ]
                     )
                     
                     // Verificar la respuesta del usuario
-                    if (userInput == 'Sí') {
+                    if (userInput == 'Si') {
                         echo 'Ejecutando Stage 1...'
                         // Agrega aquí las instrucciones para el Stage 1
                     } else {

@@ -12,7 +12,7 @@ pipeline {
                         id: 'executeStage',
                         message: 'Do you want to deploy version to DEV?',
                         parameters: [
-                                choice(defaultValue: false, choices: [true, false],description: '"yes" to deploy/"no" to skip?', name: 'choose one option')
+                                choice(defaultValue: "false", choices: [true, false],description: '"yes" to deploy/"no" to skip?', name: 'choose one option')
                         ])
                     }
                 }
@@ -35,7 +35,7 @@ pipeline {
                         id: 'executeStage',
                         message: 'Do you want to deploy version to DEV?',
                         parameters: [
-                                choice(defaultValue: false, choices: ["yes", "no"],description: '"yes" to deploy/"no" to skip?', name: 'choose one option')
+                                choice(defaultValue: false, choices: [true, false],description: '"yes" to deploy/"no" to skip?', name: 'choose one option')
                         ])
                     }
                 }

@@ -12,9 +12,11 @@ pipeline {
                                 choice(defaultValue: false, choices: ['yes', 'no'],description: 'yes to confirm/empty to skip this stage?', name: 'Yes')
                         ]
                 )
+                
                 if(executeStage=='yes'){
                     echo 'Primer stage'
                 }else{
+                    
                     echo 'Skipped'
                     currentBuild.result = "SUCCESS"
                 }
@@ -25,6 +27,9 @@ pipeline {
          
         
         stage('Stage 2') {
+            when{
+                executeStage = 'no'
+            }
             steps {
                 echo 'Segundo stage'
             }

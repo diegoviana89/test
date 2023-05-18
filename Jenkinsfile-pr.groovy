@@ -9,7 +9,7 @@ pipeline {
                   id: 'executeStage',
                   message: 'Do you want to deploy version to DEV?',
                   parameters: [
-                          [$class: 'BooleanParameterDefinition', description: 'deploy to dev', name: 'deployToDev']
+                         booleanParam(defaultValue: false, description: 'really?', name: 'myValue')
                   ]
           )
           if(executeStage){

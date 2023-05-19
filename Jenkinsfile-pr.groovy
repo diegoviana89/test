@@ -1,6 +1,6 @@
 def executeStage = "no"
 def flag = "yes"
-def tre = true
+def tre = false
 pipeline {
     agent any
 
@@ -49,7 +49,7 @@ pipeline {
         stage('Stage 2') {
              when {
                 expression {
-                    return tre && flag == "yes"
+                    return tre && executeStage == "yes"
                 }
             }
             steps {

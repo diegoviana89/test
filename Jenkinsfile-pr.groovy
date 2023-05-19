@@ -47,7 +47,6 @@ pipeline {
          
         
         stage('Stage 2') {
-            println "hhhhhh"
              when {
                 expression {
                     return tre && executeStage == "yes"

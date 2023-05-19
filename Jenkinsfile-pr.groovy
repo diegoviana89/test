@@ -51,6 +51,7 @@ pipeline {
                 expression {
                     return tre && executeStage == "yes"
                 }
+                echo "hhhhhhhhh"
             }
             steps {
                 echo 'Segundo stage'
